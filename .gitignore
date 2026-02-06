@@ -1,0 +1,15 @@
+# Docker / entorno
+mysql/
+.env
+
+# PrestaShop cache / logs (si los añades luego)
+var/cache/
+var/logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

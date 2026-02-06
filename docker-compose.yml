@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: prestashop_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: prestashop
+    volumes:
+      - ./mysql:/var/lib/mysql
+
+  prestashop:
+    image: prestashop/prestashop:8.2
+    container_name: prestashop_app
+    depends_on:
+      - mysql
+    ports:
+      - "8080:80"
+    environment:
+      DB_SERVER: mysql
+      DB_NAME: prestashop
+      DB_USER: root
+      DB_PASSWD: root
+      PS_DEV_MODE: 1
+    volumes:
+      - ./modules:/var/www/html/modules
